@@ -4,7 +4,7 @@ const cors = require('cors')
 const { createConcert, getAllConcerts, getConcertById } = require('./queries/concerts.js')
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 
 app.use(bodyParser.json())
 app.use(
@@ -12,9 +12,6 @@ app.use(
     extended: true,
   })
 )
-app.use(cors({
-  origin:"http://localhost:3000"
-}))
 
 app.get('/concerts', getAllConcerts)
 app.get('/concerts/:id', getConcertById)
